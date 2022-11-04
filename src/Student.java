@@ -28,7 +28,7 @@ public class Student
                     System.out.println("Add student selected");
                     System.out.println("Enter the name");
                     name= sc.next();
-                    System.out.println("Enter the roll number number");
+                    System.out.println("Enter the roll number");
                     rno= sc.nextInt();
                     System.out.println("Enter the admission  number");
                     admo=sc.nextInt();
@@ -102,6 +102,25 @@ public class Student
                     break;
                 case 4:
                     System.out.println("update student selected");
+                    System.out.println("Enter the admission number");
+                    String adm=sc.next();
+                    System.out.println("Enter the name to be updated");
+                    name= sc.next();
+                    System.out.println("Enter the roll number to be updated");
+                    rno= sc.nextInt();
+                    System.out.println("Enter the college name to be updated");
+                    clg=sc.next();
+                    try{
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/studentdb","root","");
+                        String sql="UPDATE `students` SET `NAME`='"+name+"',`Rno`='"+rno+"',`COLLEGE`='"+clg+"' WHERE `ADMno`="+adm;
+                        Statement stmt=con.createStatement();
+                        stmt.executeUpdate(sql);
+                        System.out.println("updated successfully");
+
+                    }
+                    catch (Exception e){
+                        System.out.println(e);}
                     break;
                 case 5:
                     System.out.println("Delete a student selected");
