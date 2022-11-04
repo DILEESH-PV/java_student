@@ -1,8 +1,19 @@
+import com.mysql.jdbc.Driver;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.Scanner;
 public class Student
  {
     public static void main(String[] args)
     {
+        try{
+        Class.forName("com.mysql.jdbc.Driver");
+            Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/studentdb","root","");
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
         int choice;
         Scanner sc=new Scanner(System.in);
         while (true)
