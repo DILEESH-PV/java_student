@@ -77,6 +77,28 @@ public class Student
                     break;
                 case 3:
                     System.out.println("search a student selected");
+                    System.out.println("Enter the admission number for search a student");
+                    admo=sc.nextInt();
+                    try{
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/studentdb","root","");
+                        String sql="SELECT `NAME`, `Rno`, `ADMno`, `COLLEGE` FROM `students` WHERE `ADMno`="+String.valueOf(admo);
+                        Statement stmt=con.createStatement();
+                        ResultSet rs=stmt.executeQuery(sql);
+                        while (rs.next()){
+                            String getName=rs.getString("NAME");
+                            String getRoll=rs.getString("Rno");
+                            String getAdm=rs.getString("ADMno");
+                            String getClg=rs.getString("COLLEGE");
+                            System.out.println("Name :"+getName);
+                            System.out.println("Roll No :"+getRoll);
+                            System.out.println("Ad No :"+getAdm);
+                            System.out.println("College:"+getClg+"\n");
+
+                     }
+                    }
+                    catch (Exception e){
+                        System.out.println(e);}
                     break;
                 case 4:
                     System.out.println("update student selected");
